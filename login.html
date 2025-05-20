@@ -1,329 +1,419 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pre-Order Reservation</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
-  <style>
-    body {
-      font-family: Arial, Helvetica, sans-serif, sans-serif;
-      background: linear-gradient(to right, #ce8d15, #b6fbff);
-      margin: 12px;
-      padding: 0;
-    }
-    .container {
-      max-width: 700px;
-      margin: 50px auto;
-      background: #ce8d15, #b6fbff;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 15px 30px rgba(0, 27, 64, 0.3);
-    }
-    h2 {
-      text-align: center;
-      color: #2c3e50;
-      margin-bottom: 50px;
-    }
-    input, select, button, textarea {
-      width: 100%;
-      padding: 14px;
-      margin: 12px 0;
-      border-radius: 10px;
-      border: 1px solid #b1b373;
-      font-size: 16px;
-    }
-    textarea {
-      resize: vertical;
-    }
-    button {
-      background-color: #2980b9;
-      color: white;
-      font-weight: bold;
-      border: none;
-      transition: background-color 1.0s ease;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #1f618d;
-    }
-    .social-login {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-    }
-    .social-login button {
-      flex: 1;
-      padding: 10px;
-      font-size: 14px;
-      border-radius: 8px;
-    }
-    .hidden {
-      display: none;
-    }
-    label {
-      font-weight: bold;
-    }
-    .receipt-box {
-      background-color: #39bbee;
-      border: 2px solid #857e20;
-      border-radius: 10px;
-      padding: 20px;
-      color: #ebebeb;
-    }
-    .receipt-box p {
-      margin: 10px 0;
-      font-size: 16px;
-    }
-    .receipt-box span {
-      font-weight: bold;
-    }
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(253, 250, 250, 0.4);
-    }
-    .modal-content {
-      background-color: #e7e7e7;
-      margin: 10% auto;
-      padding: 20px;
-      border: 1px solid #686868;
-      width: 90%;
-      max-width: 500px;
-      border-radius: 10px;
-      box-sizing: border-box;
-    }
-    .modal img {
-      width: 100%;
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-      display: block;
-    }
-    .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-    }
-    .close:hover,
-    .close:focus {
-      color: black;
-      text-decoration: none;
-      cursor: pointer;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-Star Hotel Reservation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #f8e89f, #ebd93d);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            background: #dad4c2;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(27, 0, 7, 0.3);
+        }
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        input, select, button, textarea {
+            width: 100%;
+            padding: 14px;
+            margin: 12px 0;
+            border-radius: 10px;
+            border: 1px solid #cacaca;
+            font-size: 16px;
+        }
+        textarea {
+            resize: vertical;
+        }
+        button {
+            background-color: #7fb3d6;
+            color: white;
+            font-weight: bold;
+            border: none;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #1f618d;
+        }
+        .social-login {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .social-login button {
+            flex: 1;
+            padding: 10px;
+            font-size: 14px;
+            border-radius: 8px;
+        }
+        .hidden {
+            display: none;
+        }
+        label {
+            font-weight: bold;
+        }
+        .receipt-box {
+            background-color: #a2edf0;
+            border: 2px solid #c2d6cb;
+            border-radius: 10px;
+            padding: 20px;
+            color: #145a32;
+        }
+        .receipt-box p {
+            margin: 10px 0;
+            font-size: 12px;
+        }
+        .receipt-box span {
+            font-weight: bold;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,24,7,0.4);
+        }
+        .modal-content {
+            background-color: #d6c8ad;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #2c2c2c;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-sizing: border-box;
+        }
+        .modal img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            display: block;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        #transactionHistory {
+            margin-top: 20px;
+            border-top: 1px solid #e0a36a;
+            padding-top: 20px;
+        }
+        #transactionHistory h3 {
+            color: #d5e485;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        #transactionList {
+            list-style: none;
+            padding: 0;
+        }
+        #transactionList li {
+            background-color: #e6f7ff;
+            border: 1px solid #ad902f;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+        #transactionList li strong {
+            font-weight: bold;
+            color: #34495e;
+        }
+    </style>
 </head>
 <body>
-  <div class="container" id="loginForm">
-    <h2>Login</h2>
-    <div class="social-login">
-      <button style="background:#3b5998;color:white;">Facebook</button>
-      <button style="background:#db4437;color:white;">Google</button>
+    <div class="container" id="loginForm">
+        <h2>Login</h2>
+        <div class="social-login">
+            <button style="background:#334875;color:white;">Facebook</button>
+            <button style="background:#db4437;color:white;">Google</button>
+        </div>
+        <input type="email" id="loginEmail" placeholder="Email">
+        <input type="password" id="loginPassword" placeholder="Password">
+        <button onclick="loginUser()">Login</button>
+        <p style="text-align:center">Don't have an account? <a href="#" onclick="showRegister()">Register here</a></p>
     </div>
-    <input type="email" id="loginEmail" placeholder="Email">
-    <input type="password" id="loginPassword" placeholder="Password">
-    <button onclick="loginUser()">Login</button>
-    <p style="text-align:center">Don't have an account? <a href="#" onclick="showRegister()">Register here</a></p>
-  </div>
 
-  <div class="container hidden" id="registerForm">
-    <h2>Register</h2>
-    <input type="email" id="registerEmail" placeholder="Email">
-    <input type="password" id="registerPassword" placeholder="Password">
-    <button onclick="registerUser()">Register</button>
-  </div>
-
-  <div class="container hidden" id="reservationForm">
-    <h1>Room Reservation</h1>
-    <input type="text" id="guestName" placeholder="Full Name">
-    <input type="text" id="guestContact" placeholder="Phone Number">
-    <input type="email" id="guestEmail" placeholder="Email Address">
-    <label for="checkin">Check-In Date:</label>
-    <input type="date" id="checkin">
-    <label for="checkout">Check-Out Date:</label>
-    <input type="date" id="checkout">
-    <label for="guests">Number of Guests (min 3):</label>
-    <input type="number" id="guests" min="3" value="3">
-    <label for="room">Room Type:</label>
-
-    <select id="room" onchange="showRoomModal()">
-      <option value="">-- Select Room Type --</option>
-      <option value="Standard">Standard Room</option>
-      <option value="Deluxe">Deluxe Suite</option>
-      <option value="VIP">VIP Suite</option>
-
-    </select>
-    <label for="notes">Special Requests / Notes:</label>
-    <textarea id="notes" rows="3" placeholder="Any special requests or additional info..."></textarea>
-    <button onclick="submitReservation()">Submit Reservation</button>
-  </div>
-
-  <div class="container hidden" id="receipt">
-    <h1>Reservation Receipt</h1>
-    <button onclick="backToReservation()">Back to Reservation</button>
-    <div class="receipt-box">
-      <p><span>Name:</span> <span id="rName"></span></p>
-      <p><span>Contact:</span> <span id="rContact"></span></p>
-      <p><span>Email:</span> <span id="rEmail"></span></p>
-      <p><span>Check-In:</span> <span id="rCheckin"></span></p>
-      <p><span>Check-Out:</span> <span id="rCheckout"></span></p>
-      <p><span>Guests:</span> <span id="rGuests"></span></p>
-      <p><span>Room:</span> <span id="rRoom"></span></p>
-      <p><span>Requests:</span> <span id="rNotes"></span></p>
-      <p><span>Total Price:</span> ₱<span id="rTotal"></span></p>
+    <div class="container hidden" id="registerForm">
+        <h2>Register</h2>
+        <input type="email" id="registerEmail" placeholder="Email">
+        <input type="password" id="registerPassword" placeholder="Password">
+        <button onclick="registerUser()">Register</button>
     </div>
-    <br>
-    <label for="payment">Select Payment Method:</label>
-    <select id="payment">
-      <option>GCash</option>
-      <option>Bank Transfer</option>
-      <option>PayMaya</option>
-    </select>
-    <button onclick="logout()">Logout</button>
-  </div>
 
-  <div id="roomModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <div id="roomDetails"></div>
+    <div class="container hidden" id="reservationForm">
+        <h2>Room Reservation</h2>
+        <input type="text" id="guestName" placeholder="Full Name">
+        <input type="text" id="guestContact" placeholder="Contact Information (Phone)">
+        <input type="email" id="guestEmail" placeholder="Email Address">
+        <label for="checkin">Check-In Date:</label>
+        <input type="date" id="checkin">
+        <label for="checkout">Check-Out Date:</label>
+        <input type="date" id="checkout">
+        <label for="guests">Number of Guests (min 3):</label>
+        <input type="number" id="guests" min="3" value="3">
+        <label for="room">Room Type:</label>
+        <select id="room" onchange="showRoomModal()">
+            <option value="">-- Select Room Type --</option>
+            <option value="Standard">Standard Room</option>
+            <option value="Deluxe">Deluxe Suite</option>
+            <option value="VIP">VIP Suite</option>
+        </select>
+        <label for="notes">Special Requests / Notes:</label>
+        <textarea id="notes" rows="3" placeholder="Any special requests or additional info..."></textarea>
+        <button onclick="submitReservation()">Submit Reservation</button>
     </div>
-  </div>
 
-  <script>
-    const users = {};
-    const roomInfo = {
-      'Standard': {
-        img: 'https://wallpaperaccess.com/full/2690978.jpg',
-        desc: 'A comfortable room with basic amenities perfect for budget travelers.',
-        price: 1500
-      },
-      'Deluxe': {
-        img: 'https://www.grandlordhotel.com/medias/room/big/78/deluxe02.jpg',
-        desc: 'A spacious deluxe suite with luxurious furnishings and a great view.',
-        price: 3500
-      },
-      'VIP': {
-        img: 'https://durian.com.my/wp-content/uploads/2022/05/standard-room-3.jpg',
-        desc: 'An exclusive VIP suite offering top-tier amenities and service.',
-        price: 5000
-      }
-    };
+    <div class="container hidden" id="receipt">
+        <h2>Reservation Receipt</h2>
+        <div class="receipt-box">
+            <p><span>Name:</span> <span id="rName"></span></p>
+            <p><span>Contact:</span> <span id="rContact"></span></p>
+            <p><span>Email:</span> <span id="rEmail"></span></p>
+            <p><span>Check-In:</span> <span id="rCheckin"></span></p>
+            <p><span>Check-Out:</span> <span id="rCheckout"></span></p>
+            <p><span>Guests:</span> <span id="rGuests"></span></p>
+            <p><span>Room:</span> <span id="rRoom"></span></p>
+            <p><span>Requests:</span> <span id="rNotes"></span></p>
+            <p><span>Total Price:</span> ₱<span id="rTotal"></span></p>
+        </div>
+        <br>
+        <label for="payment">Select Payment Method:</label>
+        <select id="payment">
+            <option>GCash</option>
+            <option>Bank Transfer</option>
+            <option>PayMaya</option>
+        </select>
+        <br><br>
+        <button onclick="backToReservation()">Back to Reservation</button>
+        <button onclick="showTransactionHistory()">View Transaction History</button>
+        <button onclick="logout()">Logout</button>
+    </div>
 
-    function showRegister() {
-      document.getElementById('loginForm').classList.add('hidden');
-      document.getElementById('registerForm').classList.remove('hidden');
-    }
+    <div class="container hidden" id="transactionHistory">
+        <h3>Transaction History</h3>
+        <ul id="transactionList">
+            </ul>
+        <button onclick="backToReceipt()">Back to Receipt</button>
+    </div>
 
-    function registerUser() {
-      const email = document.getElementById('registerEmail').value;
-      const pass = document.getElementById('registerPassword').value;
-      if (email && pass) {
-        users[email] = pass;
-        alert("Registration successful!");
-        document.getElementById('registerForm').classList.add('hidden');
-        document.getElementById('loginForm').classList.remove('hidden');
-      } else {
-        alert("Please fill in all fields.");
-      }
-    }
+    <div id="roomModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="roomDetails"></div>
+        </div>
+    </div>
 
-    function loginUser() {
-      const email = document.getElementById('loginEmail').value;
-      const pass = document.getElementById('loginPassword').value;
-      if (users[email] && users[email] === pass) {
-        document.getElementById('loginForm').classList.add('hidden');
-        document.getElementById('reservationForm').classList.remove('hidden');
-      } else {
-        alert("Invalid credentials or not registered yet.");
-      }
-    }
+    <script>
+        const users = {};
+        const roomInfo = {
+            'Standard': {
+                img: 'https://cache.marriott.com/marriottassets/marriott/LASJW/lasjw-suite-0084-hor-clsc.jpg?interpolation=progressive-bilinear&',
+                desc: 'A comfortable room with basic amenities perfect for budget travelers.',
+                price: 1500
+            },
+            'Deluxe': {
+                img: 'https://pix10.agoda.net/hotelImages/6492371/-1/71543f4b68dc6723b670d9ebe1ad0ccd.jpg?ca=13&ce=1&s=1024x768&isSkia=true',
+                desc: 'A spacious deluxe suite with luxurious furnishings and a great view.',
+                price: 3500
+            },
+            'VIP': {
+                img: 'https://pix10.agoda.net/hotelImages/61960/-1/69b1525f844832bd6698d0f757794509.jpg',
+                desc: 'An exclusive VIP suite offering top-tier amenities and service.',
+                price: 5000
+            }
+        };
+        let transactions = [];
 
-    function showRoomModal() {
-      const roomType = document.getElementById('room').value;
-      if (roomType && roomInfo[roomType]) {
-        const details = roomInfo[roomType];
-        document.getElementById('roomDetails').innerHTML = `
-          <h2>${roomType} Room</h2>
-          <img src="${details.img}" alt="${roomType} Image">
-          <p>${details.desc}</p>
-          <p><strong>Price:</strong> ₱${details.price} per night</p>
-        `;
-        document.getElementById('roomModal').style.display = 'block';
-      }
-    }
+        function showRegister() {
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('registerForm').classList.remove('hidden');
+        }
 
-    function closeModal() {
-      document.getElementById('roomModal').style.display = 'none';
-    }
+        function registerUser() {
+            const email = document.getElementById('registerEmail').value;
+            const pass = document.getElementById('registerPassword').value;
+            if (email && pass) {
+                users[email] = pass;
+                alert("Registration successful!");
+                document.getElementById('registerForm').classList.add('hidden');
+                document.getElementById('loginForm').classList.remove('hidden');
+            } else {
+                alert("Please fill in all fields.");
+            }
+        }
 
-    function submitReservation() {
-      const name = document.getElementById('guestName').value;
-      const contact = document.getElementById('guestContact').value;
-      const email = document.getElementById('guestEmail').value;
-      const checkin = document.getElementById('checkin').value;
-      const checkout = document.getElementById('checkout').value;
-      const guests = parseInt(document.getElementById('guests').value);
-      const room = document.getElementById('room').value;
-      const notes = document.getElementById('notes').value;
+        function loginUser() {
+            const email = document.getElementById('loginEmail').value;
+            const pass = document.getElementById('loginPassword').value;
+            if (users[email] && users[email] === pass) {
+                document.getElementById('loginForm').classList.add('hidden');
+                document.getElementById('reservationForm').classList.remove('hidden');
+            } else {
+                alert("Invalid credentials or not registered yet.");
+            }
+        }
 
-      const checkinDate = new Date(checkin);
-      const checkoutDate = new Date(checkout);
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      const nights = (checkoutDate - checkinDate) / (1000 * 60 * 60 * 24);
+        function showRoomModal() {
+            const roomType = document.getElementById('room').value;
+            if (roomType && roomInfo[roomType]) {
+                const details = roomInfo[roomType];
+                document.getElementById('roomDetails').innerHTML = `
+                    <h2>${roomType} Room</h2>
+                    <img src="${details.img}" alt="${roomType} Image">
+                    <p>${details.desc}</p>
+                    <p><strong>Price:</strong> ₱${details.price} per night</p>
+                `;
+                document.getElementById('roomModal').style.display = 'block';
+            }
+        }
 
-      if (!name || !contact || !email || !checkin || !checkout || nights < 1 || guests < 1 || !room) {
-        alert("Please fill in all fields properly. Minimum 3 guests per room.");
-        return;
-      }
-      if (checkinDate < today) {
-        alert("Check-in date cannot be in the past.");
-        return;
-      }
-      if (checkoutDate <= checkinDate) {
-        alert("Check-out date must be after check-in date.");
-        return;
-      }
+        function closeModal() {
+            document.getElementById('roomModal').style.display = 'none';
+        }
 
-      const roomPrice = roomInfo[room].price;
-      const total = nights * roomPrice;
-      document.getElementById('reservationForm').classList.add('hidden');
-      document.getElementById('receipt').classList.remove('hidden');
-      document.getElementById('rName').innerText = name;
-      document.getElementById('rContact').innerText = contact;
-      document.getElementById('rEmail').innerText = email;
-      document.getElementById('rCheckin').innerText = checkin;
-      document.getElementById('rCheckout').innerText = checkout;
-      document.getElementById('rGuests').innerText = guests;
-      document.getElementById('rRoom').innerText = room + 'Room';
-      document.getElementById('rNotes').innerText = notes || 'N/A';
-      document.getElementById('rTotal').innerText = total;
-    }
+        function submitReservation() {
+            const name = document.getElementById('guestName').value;
+            const contact = document.getElementById('guestContact').value;
+            const email = document.getElementById('guestEmail').value;
+            const checkin = document.getElementById('checkin').value;
+            const checkout = document.getElementById('checkout').value;
+            const guests = parseInt(document.getElementById('guests').value);
+            const room = document.getElementById('room').value;
+            const notes = document.getElementById('notes').value;
+            const payment = document.getElementById('payment').value;
 
-    function backToReservation() {
-      document.getElementById('receipt').classList.add('hidden');
-      document.getElementById('reservationForm').classList.remove('hidden');
-    }
+            const checkinDate = new Date(checkin);
+            const checkoutDate = new Date(checkout);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const nights = (checkoutDate - checkinDate) / (1000 * 50 * 60 * 24);
 
-    function logout() {
-      document.getElementById('receipt').value = "";
-      document.getElementById('loginForm').value = "";
-      document.getElementById('guestName').value = "";
-      document.getElementById('guestContact').value = "";
-      document.getElementById('guestEmail').value = "";
-      document.getElementById('checkin').value = "";
-      document.getElementById('checkout').value = "";
-      document.getElementById('guests').value = 1;
-      document.getElementById('room').value = "";
-      document.getElementById('notes').value = "";
-    }
-  </script>
+            if (!name || !contact || !email || !checkin || !checkout || nights < 1 || guests < 3 || !room) {
+                alert("Please fill in all fields properly. Minimum 3 guests per room.");
+                return;
+            }
+
+            if (checkinDate < today) {
+                alert("Check-in date cannot be in the past.");
+                return;
+            }
+
+            if (checkoutDate <= checkinDate) {
+                alert("Check-out date must be after check-in date.");
+                return;
+            }
+
+            const roomPrice = roomInfo[room].price;
+            const total = nights * roomPrice;
+
+            const transaction = {
+                name: name,
+                contact: contact,
+                email: email,
+                checkin: checkin,
+                checkout: checkout,
+                guests: guests,
+                room: room,
+                notes: notes,
+                total: total,
+                paymentMethod: payment,
+                timestamp: new Date().toLocaleString()
+            };
+            transactions.push(transaction);
+            localStorage.setItem('transactions', JSON.stringify(transactions));
+
+            document.getElementById('reservationForm').classList.add('hidden');
+            document.getElementById('receipt').classList.remove('hidden');
+            document.getElementById('rName').innerText = name;
+            document.getElementById('rContact').innerText = contact;
+            document.getElementById('rEmail').innerText = email;
+            document.getElementById('rCheckin').innerText = checkin;
+            document.getElementById('rCheckout').innerText = checkout;
+            document.getElementById('rGuests').innerText = guests;
+            document.getElementById('rRoom').innerText = room + ' Room';
+            document.getElementById('rNotes').innerText = notes || 'N/A';
+            document.getElementById('rTotal').innerText = total;
+        }
+
+        function backToReservation() {
+            document.getElementById('receipt').classList.add('hidden');
+            document.getElementById('reservationForm').classList.remove('hidden');
+        }
+
+        function showTransactionHistory() {
+            document.getElementById('receipt').classList.add('hidden');
+            document.getElementById('transactionHistory').classList.remove('hidden');
+            displayTransactions();
+        }
+
+        function backToReceipt() {
+            document.getElementById('transactionHistory').classList.add('hidden');
+            document.getElementById('receipt').classList.remove('hidden');
+        }
+
+        function logout() {
+            document.getElementById('receipt').classList.add('hidden');
+            document.getElementById('transactionHistory').classList.add('hidden');
+            document.getElementById('loginForm').classList.remove('hidden');
+            document.getElementById('guestName').value = "";
+            document.getElementById('guestContact').value = "";
+            document.getElementById('guestEmail').value = "";
+            document.getElementById('checkin').value = "";
+            document.getElementById('checkout').value = "";
+            document.getElementById('guests').value = 3;
+            document.getElementById('room').value = "";
+            document.getElementById('notes').value = "";
+        }
+
+        function displayTransactions() {
+            const transactionList = document.getElementById('transactionList');
+            transactionList.innerHTML = '';
+            const storedTransactions = localStorage.getItem('transactions');
+            if (storedTransactions) {
+                transactions = JSON.parse(storedTransactions);
+                transactions.forEach(transaction => {
+                    const listItem = document.createElement('li');
+                    listItem.innerHTML = `
+                        <strong>Name:</strong> ${transaction.name}<br>
+                        <strong>Room:</strong> ${transaction.room} Room<br>
+                        <strong>Check-In:</strong> ${transaction.checkin}<br>
+                        <strong>Check-Out:</strong> ${transaction.checkout}<br>
+                        <strong>Total:</strong> ₱${transaction.total}<br>
+                        <strong>Payment:</strong> ${transaction.paymentMethod}<br>
+                        <strong>Date:</strong> ${transaction.timestamp}
+                    `;
+                    transactionList.appendChild(listItem);
+                });
+            } else {
+                transactionList.innerHTML = '<p>No transaction history available.</p>';
+            }
+        }
+
+        displayTransactions();
+    </script>
 </body>
 </html>
